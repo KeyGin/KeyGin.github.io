@@ -5,26 +5,26 @@
   
   <entry>
     <title>ARTS Week 1</title>
-    <link href="undefinedarts/arts-week1.html"/>
-    <url>arts/arts-week1.html</url>
+    <link href="undefinedarts/arts-week1/"/>
+    <url>arts/arts-week1/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<p>ARTS 打卡第一周</p><a id="more"></a><h1 id="ARTS第一周-11-25-12-01"><a href="#ARTS第一周-11-25-12-01" class="headerlink" title="ARTS第一周 (11.25-12.01)"></a>ARTS第一周 (11.25-12.01)</h1><h2 id="1-Algrithm"><a href="#1-Algrithm" class="headerlink" title="1. Algrithm"></a>1. Algrithm</h2><h3 id="A-LeetCode-7-Reverse-Integer"><a href="#A-LeetCode-7-Reverse-Integer" class="headerlink" title="A. LeetCode 7. Reverse Integer"></a>A. LeetCode 7. Reverse Integer</h3><p>这是解题编码。</p><pre><code class="python">class Solution:    def reverse(self, x: int) -&gt; int:        if x == 0:            return 0        x_str = str(abs(x))        direct_reverse_length = 9        usigned_max_int_str = &quot;2147483647&quot;        usigned_min_int_str = &quot;2147483648&quot;        x_sign = int(x / abs(x))        x_len = len(x_str)        index = 0        if x_len &gt; direct_reverse_length:            if x_len &gt; 10:                step = x_str[10:x_str]                if int(step) &gt; 0:                    return 0                else:                    x_len = 10            if x_sign &gt; 0:                limit_arr = list(usigned_max_int_str)            else:                limit_arr = list(usigned_min_int_str)            last_index = x_len - 1            x_arr = list(x_str[0:x_len])            flag = True            while last_index &gt;= 0:                if flag:                    if x_arr[last_index] &gt; limit_arr[index]:                        return 0                    elif x_arr[last_index] &lt; limit_arr[index]:                        flag = False                limit_arr[index] = x_arr[last_index]                index+=1                last_index-=1            x_str = &#39;&#39;.join(limit_arr)        else:            x_arr = list(x_str)            last_index = x_len - 1            while last_index &gt; index:                buff = x_arr[index]                x_arr[index] = x_arr[last_index]                x_arr[last_index] = buff                index+=1                last_index-=1            x_str = &#39;&#39;.join(x_arr)        result = int(x_str) * x_sign        return result</code></pre><h2 id="2-Review"><a href="#2-Review" class="headerlink" title="2. Review"></a>2. Review</h2><p>在Dzone上看到的，<a href="https://dzone.com/articles/approaches-to-storing-application-parameters-metad" target="_blank" rel="noopener">3 Approaches to Storing Application Parameters and Metadata</a>。</p><p>原先我以为把数据解析成csv逗号分隔符，数据可读性会很差，这个哥们给了我一个新的思路，就是可以在数据的前面加一个列名，用另外一个特殊字符隔开，这样子可读性就大大增强了。如(id:1,name:demo,passwd:123)，就是源数据(1,demo,123)的加强版，相对来说，可读性大大增强了。</p><h2 id="3-Tip"><a href="#3-Tip" class="headerlink" title="3. Tip"></a>3. Tip</h2><ul><li>Dorado datapath的巧用，在更新数据的时候，可以用[#deleted]表示页面删除的数据，[#new]表示新建的数据。</li></ul><h2 id="4-Share"><a href="#4-Share" class="headerlink" title="4. Share"></a>4. Share</h2><ul><li><a href="https://dzone.com/articles/approaches-to-storing-application-parameters-metad" target="_blank" rel="noopener">3 Approaches to Storing Application Parameters and Metadata</a></li></ul>]]></content>
     
     
     <categories>
       
-      <category>arts</category>
-      
       <category>geektime</category>
+      
+      <category>arts</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>arts</tag>
-      
       <tag>geektime</tag>
+      
+      <tag>arts</tag>
       
     </tags>
     
@@ -34,10 +34,10 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="undefinedhello-world.html"/>
-    <url>hello-world.html</url>
+    <link href="undefinedhello-world/"/>
+    <url>hello-world/</url>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo server</span></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo generate</span></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
     
     
     
