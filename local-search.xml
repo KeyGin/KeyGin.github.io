@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>ARTS Week 3</title>
+    <link href="undefinedarts/arts-week3/"/>
+    <url>arts/arts-week3/</url>
+    
+    <content type="html"><![CDATA[<p>ARTS 打卡第三周</p><a id="more"></a><h1 id="ARTS-打卡第三周-2019-12-09-2019-12-15"><a href="#ARTS-打卡第三周-2019-12-09-2019-12-15" class="headerlink" title="ARTS 打卡第三周(2019.12.09 - 2019.12.15)"></a>ARTS 打卡第三周(2019.12.09 - 2019.12.15)</h1><h2 id="Algrithms"><a href="#Algrithms" class="headerlink" title="Algrithms"></a>Algrithms</h2><h3 id="A-9-Palindrome-Number"><a href="#A-9-Palindrome-Number" class="headerlink" title="A 9. Palindrome Number"></a>A 9. Palindrome Number</h3><pre><code class="c++">class Solution {public:    bool isPalindrome(int x) {        if (x &lt; 0 || (x % 10 == 0 &amp;&amp; x != 0)) {            return false;        }        int j = 0;        while (x &gt; j) {            j = j * 10 + x % 10;            x = x / 10;        }        return j == x || x == (j / 10);    }};</code></pre><h3 id="B-13-Roman-to-Integer"><a href="#B-13-Roman-to-Integer" class="headerlink" title="B 13. Roman to Integer"></a>B 13. Roman to Integer</h3><pre><code class="c++">class Solution {public:    int romanToInt(string s) {        int sizes = s.size();        char c;        int j, prev = 0, value = 0;        for (int i = 0; i &lt; sizes; i++) {            c = s.at(i);            switch (c) {                case &#39;I&#39;:                    j = 1;                    break;                case &#39;V&#39;:                    j = 5;                    break;                case &#39;X&#39;:                    j = 10;                    break;                case &#39;L&#39;:                    j = 50;                    break;                case &#39;C&#39;:                    j = 100;                    break;                case &#39;D&#39;:                    j = 500;                    break;                case &#39;M&#39;:                    j = 1000;                    break;                default:                    break;            }            if (value &lt; j) {                value = j - value;            } else {                if (prev &lt; j) {                    j = j - prev - prev;                }                value = value + j;            }            prev = j;        }        return value;    }};</code></pre><h2 id="Reviews"><a href="#Reviews" class="headerlink" title="Reviews"></a>Reviews</h2><ul><li><p><a href="https://en.wikipedia.org/wiki/HATEOAS" target="_blank" rel="noopener">HATEOAS</a> </p><p>  Hypermedia As The Engine Of Application State, 在我看来，就是在一个Restful请求返回中，体现出可以利用已知数据做什么后续操作的结构，这样可以减少一些重复开发。</p></li></ul><h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ul><li><p>IP地址和32位整数的相互转换，因为IP地址每一位区间都是8位无符号整数，即（0 ~ 255）：</p><ol><li><p>IP转32位整数，假设有IP为192.168.0.28，可以转换为，长度不足8位的，前面补0得到8位：</p><ul><li><p>192 = 11000000</p></li><li><p>168 = 10101000</p></li><li><p>&nbsp;&nbsp;&nbsp; 0 = 00000000</p></li><li><p>&nbsp; 28 = 00011100</p><p>计算后，合并后得到二级制数据11000000101010000000000000011100，转换为十进制得到3232235548。这个数就是IP的32位整数表示法。</p></li></ul></li><li><p>32位整数转IP，假设有整数678941235，我们可以转换二进制得到101000011101111101001000110011，其中二进制数字长度不足24位，所以我们在前面补2个0，可以转换为：</p><ul><li><p>00101000 = 40</p></li><li><p>01110111 = 119</p></li><li><p>11010010 = 210</p></li><li><p>00110011 = 51</p><p>这样我们就算得了IP是40.119.210.51。</p></li></ul></li><li><p>注意点：IP地址最大不超过255.255.255.255，也就意味着二进制数据不能大于24个1。</p></li></ol></li></ul><h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><ul><li><p>摘自 &lt;&lt; Redis Microservices For Dummies &gt;&gt; Chapter1：When breaking down (decomposing) a monolithic architecture, you have worry about many factors:</p><ol><li><p><B>Gradualizing into services:</B> Moving from a single deliverable to many small services is a radical shift and requires careful planning.</p></li><li><p><B>Splitting at the right places:</B> When breaking a monolith, you have to take a step back and really think about where the most logical places are to divide responsibilities into services. At the same time, you want to avoid getting stuck in how your current application is built; instead, rethink without the technical debt of the past.</p></li><li><p><B>Transitioning a team:</B> Making changes to monoliths is really easy — perhaps too easy — in code. While you may need to touch dozens of function calls to deploy a single feature, your team can do this easily (testing and deploying is another issue). Isolating teams to build services also isolates teams from making changes in places for which they aren’t responsible. A double-edged sword!</p><p>逐步服务化、在正确的地方划分服务和团队过渡，这三个点都很重要，一个巨无霸的项目不可能一朝一夕就完成全部服务化，肯定要有一个过程，这就需要我们在进行服务化的时候更加的小心，在逐步服务化的过程中，肯定会碰到一些逻辑巨复杂的功能，这个时候就需要我们抛去已有逻辑处理和技术实现给我们带来的影响，站在一个更高的角度来看待服务怎么划分；服务化的过程中还会碰到团队过渡的问题，以往的一个人多功能修改的，甚至一个功能多个人修改的情况，出现问题会很难进行责任划分，在逐步服务化的过程中，也要把团队内每个人负责的模块设置好，不要出现责任划分不清晰的情况。</p></li></ol></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>geektime</category>
+      
+      <category>arts</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>geektime</tag>
+      
+      <tag>arts</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>ARTS Week 2</title>
     <link href="undefinedarts/arts-week2/"/>
     <url>arts/arts-week2/</url>
