@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="Xavier Xu">
+  <meta name="keywords" content="">
+  <title>ARTS Week4 ~ 三影塔的个人博客</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/github-v2.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>三影塔</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/post_banner.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+                ARTS Week4
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期一, 十二月 16日 2019, 11:00 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.3k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      6 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <p>ARTS打卡第四周（2019.12.16 - 2019.12.22）</p>
+<a id="more"></a>
+<h1 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h1><h2 id="Problem-14-Longest-Common-Prefix"><a href="#Problem-14-Longest-Common-Prefix" class="headerlink" title="Problem 14. Longest Common Prefix"></a>Problem 14. Longest Common Prefix</h2><p>字符比较不可避免，快的核心在于减少遍历次数和if判断，这里有一个问题就是我没有检查两个比较字符串长度不同时数组越界。官网0ms执行速度的例子是采用了字符串删除的方式，减少了substr方法的时间开销。</p>
+<pre><code class="c++">using namespace std;
+
+class Solution {
+public:
+    string longestCommonPrefix(vector&lt;string&gt; &amp;strs) {
+        string resultStr = &quot;&quot;, str, firstStr;
+        int minLength = 0;
+        // if vector is empty, then return empty string
+        if (strs.size() &gt; 0) {
+            firstStr = strs[0];
+            minLength = firstStr.length();
+        } else {
+            return resultStr;
+        }
+
+        for(int i = 1; i &lt; strs.size(); i++){
+            str = strs[i];
+            for(int j = 0; j &lt; minLength; j++){
+                if(str[j] != firstStr[j]){
+                    minLength = j;
+                }
+            }
+        }
+        resultStr = firstStr.substr(0, minLength);
+        return resultStr;
+    }
+};</code></pre>
+<h2 id="Problem-20-Valid-Parentheses"><a href="#Problem-20-Valid-Parentheses" class="headerlink" title="Problem 20. Valid Parentheses"></a>Problem 20. Valid Parentheses</h2><p>我这里的问题是计算量过多，比较太多，官方0ms的例子是用swtich处理，栈里面直接存入匹配的符号，这样是可以直接比较的，不需要做计算。</p>
+<pre><code class="c++">class Solution {
+public:
+    bool isValid(string s) {
+        // we know this parentheses in ascii code is:
+        // [ - 91
+        // ] - 93
+        // ( - 40
+        // ) - 41
+        // { - 123
+        // } - 125
+        if(s.length() &gt; 1){
+            // create a stack to store waiting for parentheses character
+            int arrIndex = 0;
+            int arrLength = s.length() * .5f + 1;
+            int arr[arrLength];
+            for (int i = 0; i &lt; s.length(); i++) {
+                int c = s[i];
+                // true only the character is &#39;[&#39;, &#39;(&#39; and &#39;{&#39;, which ascii code is 91, 40, 123
+                if ((c - 41) &amp; (c - 125) &amp; (c - 93)) {
+                    // stack full, which means it can&#39;t finish parentheses
+                    if(arrIndex &lt; arrLength){
+                        return false;
+                    }
+                    arr[arrIndex++] = c;
+                } else {
+                    // the calculate result is 0, means this character need to check parentheses
+                    if(arrIndex &lt; 1){
+                        return false;
+                    }
+                    int step = c - arr[--arrIndex];
+                    if (step &gt; 2 || step &lt; 0) {
+                        return false;
+                    }
+                }
+            }
+            // if arrIndex &gt; 0, array arr not clear, it means parentheses invalid
+            return !arrIndex;
+        } else {
+            return !s.length();
+        }
+    }
+};</code></pre>
+<h2 id="Problem-26-Remove-Duplicates-from-Sorted-Array"><a href="#Problem-26-Remove-Duplicates-from-Sorted-Array" class="headerlink" title="Problem 26. Remove Duplicates from Sorted Array"></a>Problem 26. Remove Duplicates from Sorted Array</h2><p>这个题我做了2种实现，第一种是基于数组删除元素的，第二种是基于iterator删除元素的。看完官方给出的速度快的案例后，我发现我不用去做删除动作，有点无语。</p>
+<pre><code class="c++">using namespace std;
+
+class Solution {
+public:
+    // 最终的改进版
+    int removeDuplicates(vector&lt;int&gt; &amp;nums) {
+        if(nums.size() &gt; 1){
+            int index = 0;
+            for (int i = 1; i &lt; nums.size(); i++) {
+                if (nums.at(index) &lt; nums.at(i)) {
+                    nums[++index] = nums[i];
+                }
+            }
+            return index + 1;
+        } else {
+            return nums.size();
+        }
+    }
+
+    // 基于iterator做的实现
+    int removeDuplicates_iterator(vector&lt;int&gt; &amp;nums) {
+        int index = 0;
+        vector&lt;int&gt;::iterator it = nums.begin();
+        for (int i = 1; i &lt; nums.size(); i++) {
+            if (nums.at(index) &lt; nums.at(i)) {
+                nums[++index] = nums[i];
+                it++;
+            }
+        }
+        it++;
+        nums.erase(it, nums.end());
+        return nums.size();
+    }
+
+    // 基于数组做的实现
+    int removeDuplicates_arr(vector&lt;int&gt;&amp; nums) {
+        int index = 0;
+        vector&lt;int&gt;::iterator it = nums.begin();
+        for (int i = 1; i &lt; nums.size(); i++) {
+            if (nums.at(index) &lt; nums.at(i)) {
+                nums[++index] = nums[i];
+            }
+        }
+        index++;
+        for (int i = nums.size(); i &gt; index; i--) {
+            nums.pop_back();
+        }
+        return nums.size();
+    }
+};</code></pre>
+<h2 id="Problem-27-Remove-Element"><a href="#Problem-27-Remove-Element" class="headerlink" title="Problem 27. Remove Element"></a>Problem 27. Remove Element</h2><p>这道题的难点是在第一个元素的处理，如果第一个元素和要移除的值一样，用数组处理时要注意元素的索引。</p>
+<pre><code class="c++">using namespace std;
+
+class Solution {
+public:
+    int removeElement(vector&lt;int&gt;&amp; nums, int val) {
+        if (nums.size() &lt; 1) {
+            return 0;
+        }
+        int index = 0;
+        for (int i = 0; i &lt; nums.size(); i++) {
+            if (val != nums[i]) {
+                nums[index++] = nums[i];
+            }
+        }
+        return index;
+    }
+
+    int removeElement_iterator(vector&lt;int&gt; &amp;nums, int val) {
+        if (nums.size() &lt; 1) {
+            return 0;
+        }
+        vector&lt;int&gt;::iterator it = nums.begin();
+        while (it &lt; nums.end()) {
+            if (*it == val) {
+                nums.erase(it);
+                it = nums.begin();
+            } else {
+                it++;
+            }
+        }
+        return nums.size();
+    }
+};</code></pre>
+<h2 id="Problem-28-Implement-strStr"><a href="#Problem-28-Implement-strStr" class="headerlink" title="Problem 28. Implement strStr()"></a>Problem 28. Implement strStr()</h2><pre><code class="c++">using namespace std;
+
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        if (needle == &quot;&quot;) {
+            return 0;
+        }
+        if (needle.length() &gt; haystack.length()) {
+            return -1;
+        }
+
+        int i = 0, j = 0;
+        while (i &lt; haystack.length()) {
+            if (haystack[i] == needle[j]) {
+                i++;
+                j++;
+            } else {
+                if (j &lt; needle.length()) {
+                    i = i - j + 1;
+                    j = 0;
+                } else {
+                    return i - j;
+                }
+            }
+        }
+        if (j &lt; needle.length()) {
+            return -1;
+        } else {
+            return i - j;
+        }
+    }
+
+    // 执行时间 120ms，内存消耗646.2MB
+    int strStr_v2(string haystack, string needle) {
+        if (needle == &quot;&quot;) {
+            return 0;
+        }
+        vector&lt;int&gt; v;
+        int needleLength = needle.length();
+        for (int i = 0; i &lt; haystack.length(); i++) {
+            if (!(haystack[i] - needle[0])) {
+                v.push_back(i);
+            }
+        }
+        for (int i = 0; i &lt; v.size(); i++) {
+            string str = haystack.substr(v[i], needleLength);
+            if (str == needle) {
+                return v[i];
+            }
+        }
+        return -1;
+    }
+
+    // 执行时间 1660 ms，内存消耗 9.1MB
+    int strStr_v1(string haystack, string needle) {
+        if (needle == &quot;&quot;) {
+            return 0;
+        }
+        for (int i = 0; i &lt; haystack.length(); i++) {
+            if (!(haystack[i] - needle[0])) {
+                int flag = 1;
+                for (int j = i + 1; j &lt; i + needle.length(); j++) {
+                    if (haystack[j] - needle[flag]) {
+                        flag = 0;
+                        break;
+                    } else {
+                        flag++;
+                    }
+                }
+                if (flag) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+};</code></pre>
+<h2 id="Problem-35-Search-Insert-Position"><a href="#Problem-35-Search-Insert-Position" class="headerlink" title="Problem 35. Search Insert Position"></a>Problem 35. Search Insert Position</h2><pre><code class="c++">using namespace std;
+
+class Solution {
+public:
+    int searchInsert(vector&lt;int&gt;&amp; nums, int target) {
+        for(int i = 0; i &lt; nums.size(); i++){
+            if(target &gt; nums[i]){
+            } else {
+                return i;
+            }
+        }
+        return nums.size();
+    }
+};</code></pre>
+<h2 id="Problem-38-Count-and-Say"><a href="#Problem-38-Count-and-Say" class="headerlink" title="Problem 38. Count and Say"></a>Problem 38. Count and Say</h2><pre><code class="c++">using namespace std;
+
+class Solution {
+public:
+    string countAndSay(int n){
+        string result = &quot;1&quot;, bufferResult = &quot;&quot;;
+        if(n &gt; 1){
+            int index = 1;
+            char num = &#39;0&#39;, compareNum = result[0], counter = &#39;1&#39;;
+            while(n &gt; 1){
+                if(index &lt; result.length()){
+                    // not clearly read
+                    char num = result[index];
+                    if(num == compareNum){
+                        counter++;
+                    } else {
+                        bufferResult.append(1, counter);
+                        bufferResult.append(1, compareNum);
+                        compareNum = num;
+                        counter = &#39;1&#39;;
+                    }
+                    index++;
+                } else {
+                    bufferResult.append(1, counter);
+                    bufferResult.append(1, compareNum);
+                    result = bufferResult;
+                    bufferResult = &quot;&quot;;
+                    counter = &#39;1&#39;;
+                    index = 1;
+                    compareNum = result[0];
+                    n--;
+                }
+            }
+        }
+        return result;
+    }
+};</code></pre>
+<h1 id="Reviews"><a href="#Reviews" class="headerlink" title="Reviews"></a>Reviews</h1><ul>
+<li><p><a href="https://dzone.com/articles/jvm-architecture-explained" target="_blank" rel="noopener">The JVM Architecture Explained</a></p>
+<p>  文章解释了JVM的架构，很全面。</p>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1></li>
+<li><p>比起用索引循环比对确定字符串是否包含另外一个字符串，使用substr要占用更多的内存。</p>
+</li>
+<li><p>在嵌套循环遍历数组的时候，使用单循环双索引的方式遍历速度比嵌套循环遍历的速度要快很多。</p>
+<h1 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h1></li>
+<li><p>这周在做一个系统的业务分析，发现使用脑图抓住系统的核心点，再由核心点去发散到各个细节，可以快速的理清现有的业务点，前后关系以及业务的流程，还能做到查漏补缺。</p>
+</li>
+<li><p>推荐一个好的免费英语单词记忆应用【不背单词】。</p>
+</li>
+</ul>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/geektime">geektime</a>
+                  &nbsp;
+                
+                  <a class="hover-with-bg" href="/categories/arts">arts</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/geektime">geektime</a>
+                
+                  <a class="hover-with-bg" href="/tags/arts">arts</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  ');
+      prettyPrint();
+    })
+  </script>
+
+
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
