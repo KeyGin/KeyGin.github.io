@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>ARTS Week 5</title>
+    <link href="undefinedarts/arts-week5/"/>
+    <url>arts/arts-week5/</url>
+    
+    <content type="html"><![CDATA[<p>ARTS 打卡第五周（2019.12.30 - 2020.01.05）</p><a id="more"></a><h1 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h1><h2 id="Problem-4-Median-of-Two-Sorted-Arrays"><a href="#Problem-4-Median-of-Two-Sorted-Arrays" class="headerlink" title="Problem 4. Median of Two Sorted Arrays"></a>Problem 4. Median of Two Sorted Arrays</h2><pre><code class="c++">#include &lt;vector&gt;using namespace std;class Solution{public:    // cost memory    double findMedianSortedArrays(vector&lt;int&gt; &amp;nums1, vector&lt;int&gt; &amp;nums2)    {        int lenNums1 = nums1.size(), lenNums2 = nums2.size(), totalLength = lenNums1 + lenNums2, j = 0, k = 0, medianPosition = totalLength / 2;        vector&lt;int&gt; temp;        if (lenNums1 &lt; 1)        {            temp = vector&lt;int&gt;(nums2);        }        else if (lenNums2 &lt; 1)        {            temp = vector&lt;int&gt;(nums1);        }        else        {            // using guard to simplify code, this code can simplify one guard.            // int maxValue = max(nums1.at(lenNums1 - 1), nums2.at(lenNums2 - 1)) + 1;            // nums1.push_back(maxValue);            // nums2.push_back(maxValue);            // for (int i = 0; i &lt; (medianPosition + 1); i++)            // {            //     if (nums1.at(j) &lt; nums2.at(k))            //     {            //         temp.push_back(nums1.at(j++));            //     }            //     else            //     {            //         temp.push_back(nums2.at(k++));            //     }            // }            while(j &lt; lenNums1 &amp;&amp; k &lt; lenNums2){                if(nums1.at(j) &lt; nums2.at(k)){                    temp.push_back(nums1.at(j++));                } else {                    temp.push_back(nums2.at(k++));                }            }            while(j &lt; lenNums1){                temp.push_back(nums1.at(j++));            }            while(k &lt; lenNums2){                temp.push_back(nums2.at(k++));            }        }        if (totalLength &amp; 1)        {            return temp.at(medianPosition);        }        else        {            return (temp.at(medianPosition) + temp.at(medianPosition - 1)) / 2.;        }    }    // cost time    double findMedianSortedArrays_v1(vector&lt;int&gt; &amp;nums1, vector&lt;int&gt; &amp;nums2)    {        int lenNum1 = nums1.size(), lenNum2 = nums2.size();        int totalLength = lenNum1 + lenNum2;        int middlePosition = totalLength / 2 + 1;        int i = 0, j = 0, previousNum = 0, currentNum = 0;        for (int k = 0; k &lt; middlePosition; k++)        {            previousNum = currentNum;            if (i &lt; lenNum1 &amp;&amp; j &lt; lenNum2)            {                if (nums1.at(i) &gt; nums2.at(j))                {                    currentNum = nums2.at(j);                    j++;                }                else                {                    currentNum = nums1.at(i);                    i++;                }            }            else if (i &lt; lenNum1)            {                currentNum = nums1.at(i);                i++;            }            else            {                currentNum = nums2.at(j);                j++;            }        }        if (totalLength % 2)        {            return currentNum;        }        else        {            return ((currentNum + previousNum) / 2.f);        }    }};</code></pre><h2 id="Problem-5-Longest-Palindromic-Substring"><a href="#Problem-5-Longest-Palindromic-Substring" class="headerlink" title="Problem 5. Longest Palindromic Substring"></a>Problem 5. Longest Palindromic Substring</h2><pre><code class="c++">using namespace std;class Solution {public:    string longestPalindrome(string s) {        // special case        // aabbbbaa or aba, the first characters palindromic is even number, the second characters palindromic is odd number        // if string s&#39;s length smaller than 2, means one character or empty string, so return itself.        if (s.length() &lt; 2) {            return s;        }        int start = 0, currentLen = 0, len, lenEven, lenOdd;        for (int i = 0; i &lt; s.length() - 1; i++) {            lenOdd = recursivePalindrome(s, i, i);            lenEven = recursivePalindrome(s, i, (i + 1));            len = max(lenOdd, lenEven);            if (len &gt; currentLen) {                // when odd number is bigger, len is odd number, it means 1 / 2 = 0 equals to (1 - 1) / 2 = 0                // when even number is bigger, len is even number, because even number length start on 2,                // so we should subtract 1 to calc the start position, or start will be wrong position, even be -1 in string aa                start = i - (len - 1) / 2;                currentLen = len;            }        }        return s.substr(start, currentLen);    }    int recursivePalindrome(string s, int start, int end) {        while (start &gt;= 0 &amp;&amp; end &lt; s.length() &amp;&amp; s.at(start) == s.at(end)) {            start--;            end++;        }        return end - start - 1;    }};</code></pre><h1 id="Reviews"><a href="#Reviews" class="headerlink" title="Reviews"></a>Reviews</h1><ul><li><p>Advanced API Security, 2nd Edition. Chapter 1. APIs Rule!</p><p>  这个章节点评了没有管理的API都有一些共用的缺陷：</p><p>  一、没有合理的跟踪业务所有者或者长时间跟踪业务所有者变化；</p><p>  二、版本管理不合理，新版本发布会导致旧版本功能不能用；</p><p>  三、没有权限管控；</p><p>  四、没有做资源限制，同一个地址多次调用重复申请资源，会导致资源快速占满；</p><p>  五、没有跟踪日志；</p><p>  六、没有对使用模式做合理的切割；</p><p>  七、没有可发现的能力，调用一个接口的时候不知道还可不可以做其他操作；</p><p>  八、没有合适的文档；</p><p>  九、因为以上八点，导致没有业务模型。</p><p>  这几点中我对第二点、第五点和第八点有挺深的感触，特别是和第三方系统做对接时，文档的老旧导致在对接时特别难受，大家都很忙，一个字段要沟通半个多小时，还要调试才能查出来有是另外一个字段要传什么，类似这样的问题出现频率特别高，从而导致工作效率低下。</p></li></ul><h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><ul><li>在做有序数据合并时，可以利用哨兵机制来简化代码逻辑复杂度</li><li>C++使用iterator遍历的vector时候，如果vector数据发生变化，需要重新获取iterator才能正常遍历数据</li><li>在做循环遍历的时候，尽量使用固定值作为条件，避免使用size()，length()之类的方法获取长度，以防粗心更改了集合数据后，发生一些意外情况，如果需求就是要动态的，那就没办法了</li></ul><h1 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h1><ul><li>最近公司想用阿里云EDAS来做产品管理，我去学习了下，发现EDAS除了PAAS外，还包括了一些分布式服务之间的调度管理，比起PAAS又更进一布，且EDAS兼容以前的整体式服务架构的管理。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>geektime</category>
+      
+      <category>arts</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>geektime</tag>
+      
+      <tag>arts</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>ARTS Week4</title>
     <link href="undefinedarts/arts-week4/"/>
     <url>arts/arts-week4/</url>
@@ -114,19 +143,6 @@
       <tag>arts</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="undefinedhello-world/"/>
-    <url>hello-world/</url>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-    
-    
     
   </entry>
   
